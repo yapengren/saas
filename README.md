@@ -36,3 +36,10 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 #### 启动顺序（后台）
 
 #### 常见问题
+1. 项目启动报错，报错信息如下：
+```
+    严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; 
+	nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey] with root cause
+    org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey
+```
+此异常的原因是由于 mapper 接口编译后在同一个目录下没有找到 mapper 映射文件而出现的。由于 maven 工程在默认情况下 src/main/java 目录下的 mapper 文件是不发布到 target 目录下的。
