@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yapengren.dao.mapper.TbOrderMapper">
-  <resultMap id="BaseResultMap" type="com.yapengren.pojo.TbOrder">
+<mapper namespace="com.yapengren.e3mall.mapper.TbOrderMapper">
+  <resultMap id="BaseResultMap" type="com.yapengren.e3mall.pojo.TbOrder">
     <id column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="payment" jdbcType="VARCHAR" property="payment" />
     <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
@@ -24,7 +24,7 @@
     delete from tb_order
     where order_id = #{orderId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.yapengren.pojo.TbOrder">
+  <insert id="insert" parameterType="com.yapengren.e3mall.pojo.TbOrder">
     insert into tb_order (order_id, payment, payment_type, 
       post_fee, status, create_time, 
       update_time, payment_time, consign_time, 
@@ -38,7 +38,7 @@
       #{shippingCode,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{buyerMessage,jdbcType=VARCHAR}, 
       #{buyerNick,jdbcType=VARCHAR}, #{buyerRate,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.yapengren.pojo.TbOrder">
+  <update id="updateByPrimaryKey" parameterType="com.yapengren.e3mall.pojo.TbOrder">
     update tb_order
     set payment = #{payment,jdbcType=VARCHAR},
       payment_type = #{paymentType,jdbcType=INTEGER},

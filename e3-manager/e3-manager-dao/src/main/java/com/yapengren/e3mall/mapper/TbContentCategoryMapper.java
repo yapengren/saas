@@ -1,6 +1,6 @@
 package com.yapengren.e3mall.mapper;
 
-import com.yapengren.pojo.po.TbContentCategory;
+import com.yapengren.e3mall.pojo.TbContentCategory;
 
 import java.util.List;
 

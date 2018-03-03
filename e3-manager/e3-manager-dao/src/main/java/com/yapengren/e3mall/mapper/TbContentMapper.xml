@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yapengren.dao.mapper.TbContentMapper">
-  <resultMap id="BaseResultMap" type="com.yapengren.pojo.TbContent">
+<mapper namespace="com.yapengren.e3mall.mapper.TbContentMapper">
+  <resultMap id="BaseResultMap" type="com.yapengren.e3mall.pojo.TbContent">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -18,7 +18,7 @@
     delete from tb_content
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yapengren.pojo.TbContent">
+  <insert id="insert" parameterType="com.yapengren.e3mall.pojo.TbContent">
     insert into tb_content (id, category_id, title, 
       sub_title, title_desc, url, 
       pic, pic2, created, 
@@ -28,7 +28,7 @@
       #{pic,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
       #{updated,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.yapengren.pojo.TbContent">
+  <update id="updateByPrimaryKey" parameterType="com.yapengren.e3mall.pojo.TbContent">
     update tb_content
     set category_id = #{categoryId,jdbcType=BIGINT},
       title = #{title,jdbcType=VARCHAR},

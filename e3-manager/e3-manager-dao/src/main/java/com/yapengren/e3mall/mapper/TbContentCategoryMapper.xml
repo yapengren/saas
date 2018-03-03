@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yapengren.dao.mapper.TbContentCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.yapengren.pojo.TbContentCategory">
+<mapper namespace="com.yapengren.e3mall.mapper.TbContentCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.yapengren.e3mall.pojo.TbContentCategory">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -15,7 +15,7 @@
     delete from tb_content_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yapengren.pojo.TbContentCategory">
+  <insert id="insert" parameterType="com.yapengren.e3mall.pojo.TbContentCategory">
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -23,7 +23,7 @@
       #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT}, 
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.yapengren.pojo.TbContentCategory">
+  <update id="updateByPrimaryKey" parameterType="com.yapengren.e3mall.pojo.TbContentCategory">
     update tb_content_category
     set parent_id = #{parentId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},

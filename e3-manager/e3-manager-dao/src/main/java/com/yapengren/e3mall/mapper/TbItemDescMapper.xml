@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yapengren.dao.mapper.TbItemDescMapper">
-  <resultMap id="BaseResultMap" type="com.yapengren.pojo.TbItemDesc">
+<mapper namespace="com.yapengren.e3mall.mapper.TbItemDescMapper">
+  <resultMap id="BaseResultMap" type="com.yapengren.e3mall.pojo.TbItemDesc">
     <id column="item_id" jdbcType="BIGINT" property="itemId" />
     <result column="created" jdbcType="TIMESTAMP" property="created" />
     <result column="updated" jdbcType="TIMESTAMP" property="updated" />
@@ -11,13 +11,13 @@
     delete from tb_item_desc
     where item_id = #{itemId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yapengren.pojo.TbItemDesc">
+  <insert id="insert" parameterType="com.yapengren.e3mall.pojo.TbItemDesc">
     insert into tb_item_desc (item_id, created, updated, 
       item_desc)
     values (#{itemId,jdbcType=BIGINT}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
       #{itemDesc,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.yapengren.pojo.TbItemDesc">
+  <update id="updateByPrimaryKey" parameterType="com.yapengren.e3mall.pojo.TbItemDesc">
     update tb_item_desc
     set created = #{created,jdbcType=TIMESTAMP},
       updated = #{updated,jdbcType=TIMESTAMP},

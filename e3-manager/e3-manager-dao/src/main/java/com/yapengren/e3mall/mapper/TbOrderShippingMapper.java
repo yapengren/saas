@@ -1,6 +1,6 @@
 package com.yapengren.e3mall.mapper;
 
-import com.yapengren.pojo.po.TbOrderShipping;
+import com.yapengren.e3mall.pojo.TbOrderShipping;
 
 import java.util.List;
 
