@@ -57,6 +57,7 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
     org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey
 ```
 此异常的原因是由于 mapper 接口编译后在同一个目录下没有找到 mapper 映射文件而出现的。由于 maven 工程在默认情况下 src/main/java 目录下的 mapper 文件是不发布到 target 目录下的。
+
 2. 报错信息如下：
 ```
 严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; nested exception is com.alibaba.dubbo.rpc.RpcException: Failed to invoke the method getItemById in the service com.yapengren.e3mall.service.ItemService. Tried 3 times of the providers [10.254.3.175:20880] (1/1) from the registry 192.168.110.130:2181 on the consumer 10.254.3.175 using the dubbo version 2.5.3. Last error is: Failed to invoke remote method: getItemById, provider: dubbo://10.254.3.175:20880/com.yapengren.e3mall.service.ItemService?anyhost=true&application=e3-manager-web&check=false&dubbo=2.5.3&interface=com.yapengren.e3mall.service.ItemService&methods=getItemById&pid=108&revision=1.0-SNAPSHOT&side=consumer&timestamp=1520136387466, cause: Failed to send response: Response [id=2, version=2.0.0, status=20, event=false, error=null, result=RpcResult [result=com.yapengren.e3mall.pojo.TbItem@7c1488bf, exception=null]], cause: java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
