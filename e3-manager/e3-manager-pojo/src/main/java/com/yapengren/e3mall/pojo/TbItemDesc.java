@@ -1,8 +1,12 @@
 package com.yapengren.e3mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbItemDesc {
+/**
+ * @author renyapeng
+ */
+public class TbItemDesc implements Serializable {
     private Long itemId;
 
     private Date created;

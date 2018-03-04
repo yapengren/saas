@@ -1,8 +1,12 @@
 package com.yapengren.e3mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbUser {
+/**
+ * @author renyapeng
+ */
+public class TbUser implements Serializable {
     private Long id;
 
     private String username;

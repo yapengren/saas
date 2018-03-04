@@ -10,26 +10,40 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
     |           项目中所有工程都应该继承父工程。
     |--e3-common：通用的工具类通用的pojo。打包方式jar
     |--e3-manager：服务层工程。聚合工程。Pom工程
-    |--e3-manager-dao：打包方式jar
-    |--e3-manager-pojo：打包方式jar
-    |--e3-manager-interface：打包方式jar
-    |--e3-manager-service：打包方式：jar
-    |--e3-manager-web：表现层工程。打包方式war
+        |--e3-manager-dao：打包方式jar
+        |--e3-manager-pojo：打包方式jar
+        |--e3-manager-interface：打包方式jar
+        |--e3-manager-service：打包方式：jar
+        |--e3-manager-web：表现层工程。打包方式war
 ```
 
 #### 技术选型
 
 ###### 后台技术
-| 技术              | 名称      | 版本 |
-| :--------------: | :-------: | :-----: |
-| Spring Framework | 容器      | |
-| SpringMVC        | MVC框架   | |
 
+| 技术              | 名称         | 版本     |
+| :--------------: | :----------: | :-----: |
+| Spring Framework | 容器         | 4.2.4    |
+| SpringMVC        | MVC框架      | 4.2.4    |
+| MyBatis          | ORM框架      | 3.2.8    |
+| MyBatis Generator | 代码生成     |
+| PageHelper       | MyBatis物理分页插件 | 5.0.1 |
+| Druid            | 数据库连接池   | 1.0.9   |
+| Zookeeper        | 分布式协调服务 | 3.4.7   |
+| Dubbo            | 分布式服务框架 | 2.5.3   |
+| Redis            | 分布式缓存数据库 | 
+| Solr             | 分布式全文搜索引擎 | 4.10.3 |
+| Quartz           | 作业调度框架   | 2.2.2  |
+| ActiveMQ         | 消息队列      | 5.11.2 |
+| FastDFS          | 分布式文件系统 |
+| Maven            | 项目构建管理   | 3.3.9 |
+ 
 #### 开发工具
 
-- Mysql:数据库
+- Mysql5.1:数据库
 - Tomcat:应用服务器
 - Git:版本控制
+- Nainx:反向代理服务器
 - Intellij IDEA:开发IDE
 - Navicat:数据库客户端
 
@@ -38,8 +52,14 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 #### 常见问题
 1. 项目启动报错，报错信息如下：
 ```
-    严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; 
+严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; 
 	nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey] with root cause
     org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey
 ```
 此异常的原因是由于 mapper 接口编译后在同一个目录下没有找到 mapper 映射文件而出现的。由于 maven 工程在默认情况下 src/main/java 目录下的 mapper 文件是不发布到 target 目录下的。
+2. 报错信息如下：
+```
+严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; nested exception is com.alibaba.dubbo.rpc.RpcException: Failed to invoke the method getItemById in the service com.yapengren.e3mall.service.ItemService. Tried 3 times of the providers [10.254.3.175:20880] (1/1) from the registry 192.168.110.130:2181 on the consumer 10.254.3.175 using the dubbo version 2.5.3. Last error is: Failed to invoke remote method: getItemById, provider: dubbo://10.254.3.175:20880/com.yapengren.e3mall.service.ItemService?anyhost=true&application=e3-manager-web&check=false&dubbo=2.5.3&interface=com.yapengren.e3mall.service.ItemService&methods=getItemById&pid=108&revision=1.0-SNAPSHOT&side=consumer&timestamp=1520136387466, cause: Failed to send response: Response [id=2, version=2.0.0, status=20, event=false, error=null, result=RpcResult [result=com.yapengren.e3mall.pojo.TbItem@7c1488bf, exception=null]], cause: java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
+java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
+```
+解决办法：实现 Serializable 序列化接口

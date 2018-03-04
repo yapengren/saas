@@ -1,8 +1,12 @@
 package com.yapengren.e3mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbContent {
+/**
+ * @author renyapeng
+ */
+public class TbContent implements Serializable {
     private Long id;
 
     private Long categoryId;

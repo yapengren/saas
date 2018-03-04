@@ -1,8 +1,12 @@
 package com.yapengren.e3mall.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbOrderShipping {
+/**
+ * @author renyapeng
+ */
+public class TbOrderShipping implements Serializable {
     private String orderId;
 
     private String receiverName;
