@@ -3,9 +3,6 @@ package com.yapengren.e3mall.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author renyapeng
- */
 public class TbOrderShipping implements Serializable {
     private String orderId;
 
@@ -28,6 +25,8 @@ public class TbOrderShipping implements Serializable {
     private Date created;
 
     private Date updated;
+
+    private static final long serialVersionUID = 1L;
 
     public String getOrderId() {
         return orderId;

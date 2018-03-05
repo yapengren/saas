@@ -2,9 +2,6 @@ package com.yapengren.e3mall.pojo;
 
 import java.io.Serializable;
 
-/**
- * @author renyapeng
- */
 public class TbOrderItem implements Serializable {
     private String id;
 
@@ -21,6 +18,8 @@ public class TbOrderItem implements Serializable {
     private Long totalFee;
 
     private String picPath;
+
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;

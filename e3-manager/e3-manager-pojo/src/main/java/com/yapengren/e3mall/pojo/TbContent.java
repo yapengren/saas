@@ -3,9 +3,6 @@ package com.yapengren.e3mall.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author renyapeng
- */
 public class TbContent implements Serializable {
     private Long id;
 
@@ -28,6 +25,8 @@ public class TbContent implements Serializable {
     private Date updated;
 
     private String content;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
