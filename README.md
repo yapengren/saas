@@ -43,7 +43,7 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 - Mysql5.1:数据库
 - Tomcat:应用服务器
 - Git:版本控制
-- Nainx:反向代理服务器
+- Nginx:反向代理服务器
 - Intellij IDEA:开发IDE
 - Navicat:数据库客户端
 

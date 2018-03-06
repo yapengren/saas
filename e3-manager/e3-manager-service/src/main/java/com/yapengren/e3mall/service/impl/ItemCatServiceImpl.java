@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品分类管理
@@ -47,6 +48,18 @@ public class ItemCatServiceImpl implements ItemCatService {
             // 添加到结果列表
             resultList.add(node);
         }
+
+        // jdk1.8
+        // list.stream().map(node -> {
+        //     EasyUITreeNode treeNode = new EasyUITreeNode();
+        //     // 设置属性
+        //     treeNode.setId(tbItemCat.getId());
+        //     treeNode.setText(tbItemCat.getName());
+        //     treeNode.setState(tbItemCat.getIsParent() ? "closed" : "open");
+        //
+        //     return treeNode;
+        // }).collect(Collectors.toList());
+
         return resultList;
     }
 }
