@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.mapper.TbItemMapper;
 import com.yapengren.e3mall.pojo.TbItem;
+import com.yapengren.e3mall.pojo.TbItemExample;
 import com.yapengren.e3mall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,8 @@ public class ItemServiceImpl implements ItemService {
         // 设置分页信息
         PageHelper.startPage(page, rows);
         // 执行查询
-        List<TbItem> list = tbItemMapper.selectAll();
+        TbItemExample example = new TbItemExample();
+        List<TbItem> list = tbItemMapper.selectByExample(example);
         // 创建一个返回值对象
         EasyUIDataGridResult result = new EasyUIDataGridResult();
         result.setRows(list);

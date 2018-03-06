@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yapengren.e3mall.mapper.TbItemMapper;
 import com.yapengren.e3mall.pojo.TbItem;
+import com.yapengren.e3mall.pojo.TbItemExample;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,7 +22,8 @@ public class PageHelperTest {
         // 执行 sql 语句之前设置分页信息使用 PageHeader 的startPage 方法
         PageHelper.startPage(1, 10);
         // 执行查询
-        List<TbItem> list = itemMapper.selectAll();
+        TbItemExample example = new TbItemExample();
+        List<TbItem> list = itemMapper.selectByExample(example);
         // 取分页信息，pageInfo
         PageInfo<TbItem> tbItemPageInfo = new PageInfo<>();
         System.out.println(tbItemPageInfo.getTotal());

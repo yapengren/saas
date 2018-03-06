@@ -25,4 +25,5 @@
     <!--注册中心-->
     <dubbo:registry protocol="zookeeper" address="192.168.110.130:2181"/>
     <dubbo:reference interface="com.yapengren.e3mall.service.ItemService" id="itemService"/>
+    <dubbo:reference interface="com.yapengren.e3mall.service.ItemCatService" id="itemCatService"/>
 </beans>

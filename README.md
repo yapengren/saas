@@ -13,8 +13,8 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
         |--e3-manager-dao：打包方式jar
         |--e3-manager-pojo：打包方式jar
         |--e3-manager-interface：打包方式jar
-        |--e3-manager-service：打包方式：jar
-        |--e3-manager-web：表现层工程。打包方式war
+        |--e3-manager-service：打包方式：war【端口:8080】
+    |--e3-manager-web：表现层工程。打包方式war【端口:8082】
 ```
 
 #### 技术选型
@@ -26,7 +26,7 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 | Spring Framework | 容器         | 4.2.4    |
 | SpringMVC        | MVC框架      | 4.2.4    |
 | MyBatis          | ORM框架      | 3.2.8    |
-| MyBatis Generator | 代码生成     |
+| MyBatis Generator | 代码生成     | IDEA Mybatis Plugin |
 | PageHelper       | MyBatis物理分页插件 | 5.0.1 |
 | Druid            | 数据库连接池   | 1.0.9   |
 | Zookeeper        | 分布式协调服务 | 3.4.7   |
@@ -64,3 +64,14 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
 ```
 解决办法：实现 Serializable 序列化接口
+
+3. PageHelper 分页插件版本改为 5.0.1 配置文件解决方案
+```
+<plugins>
+    <!--配置分页插件-->
+    <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        <!--设置数据库类型    注：4.0.0 以后版本可以不设置该参数，新版本能自动识别底层数据库-->
+        <!--<property name="dialect" value="mysql"/>-->
+    </plugin>
+</plugins>
+```
