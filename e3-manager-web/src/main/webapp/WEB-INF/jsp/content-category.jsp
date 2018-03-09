@@ -23,6 +23,7 @@ $(function(){
                 top: e.pageY
             });
         },
+        // 当编辑完成之后
         onAfterEdit : function(node){
         	var _tree = $(this);
         	if(node.id == 0){
