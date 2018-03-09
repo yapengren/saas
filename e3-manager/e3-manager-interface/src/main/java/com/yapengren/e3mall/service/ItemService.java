@@ -1,5 +1,6 @@
 package com.yapengren.e3mall.service;
 
+import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.pojo.TbItem;
 
@@ -17,4 +18,9 @@ public interface ItemService {
      * 查询商品列表
      */
     EasyUIDataGridResult getItemList(int page, int rows);
+
+    /**
+     * 添加商品
+     */
+    E3Result addItem(TbItem item, String desc);
 }

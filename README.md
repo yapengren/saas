@@ -14,6 +14,7 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
         |--e3-manager-interface：打包方式jar
         |--e3-manager-service：打包方式：war【端口:8080】
     |--e3-manager-web：表现层工程，打包方式war【端口:8082】
+    |--e3-portal-web：
 ```
 
 #### 技术选型
@@ -37,6 +38,9 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 | FastDFS          | 分布式文件系统 | 1.25.4 |
 | Maven            | 项目构建管理   | 3.3.9 |
  
+#### 架构图
+![](https://i.imgur.com/lWAYzGS.jpg)
+
 #### 开发工具
 
 - Mysql5.1:数据库
