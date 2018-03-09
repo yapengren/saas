@@ -7,14 +7,13 @@
 #### 组织结构
 ```
 e3-parent：父工程，打包方式pom，管理jar包的版本号。
-    |           项目中所有工程都应该继承父工程。
-    |--e3-common：通用的工具类通用的pojo。打包方式jar
-    |--e3-manager：服务层工程。聚合工程。Pom工程
+    |--e3-common：通用的工具类通用的pojo，打包方式jar
+    |--e3-manager：服务层工程，Pom工程
         |--e3-manager-dao：打包方式jar
         |--e3-manager-pojo：打包方式jar
         |--e3-manager-interface：打包方式jar
         |--e3-manager-service：打包方式：war【端口:8080】
-    |--e3-manager-web：表现层工程。打包方式war【端口:8082】
+    |--e3-manager-web：表现层工程，打包方式war【端口:8082】
 ```
 
 #### 技术选型
@@ -35,7 +34,7 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 | Solr             | 分布式全文搜索引擎 | 4.10.3 |
 | Quartz           | 作业调度框架   | 2.2.2  |
 | ActiveMQ         | 消息队列      | 5.11.2 |
-| FastDFS          | 分布式文件系统 |
+| FastDFS          | 分布式文件系统 | 1.25.4 |
 | Maven            | 项目构建管理   | 3.3.9 |
  
 #### 开发工具
@@ -47,7 +46,12 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 - Intellij IDEA:开发IDE
 - Navicat:数据库客户端
 
-#### 启动顺序（后台）
+#### 开发指南
+##### 修改本地Host
+- 127.0.0.1 dbserver
+- 192.168.25.133 trackerserver
+- 192.168.25.133 fdfsserver
+- 192.168.25.128 zkserver
 
 #### 常见问题
 1. 项目启动报错，报错信息如下：
