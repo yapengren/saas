@@ -9,12 +9,15 @@
 e3-parent：父工程，打包方式pom，管理jar包的版本号。
     |--e3-common：通用的工具类通用的pojo，打包方式jar
     |--e3-manager：服务层工程，Pom工程
-        |--e3-manager-dao：打包方式jar
-        |--e3-manager-pojo：打包方式jar
-        |--e3-manager-interface：打包方式jar
-        |--e3-manager-service：打包方式：war【端口:8080】
-    |--e3-manager-web：表现层工程，打包方式war【端口:8082】
+    |   |--e3-manager-dao
+    |   |--e3-manager-pojo
+    |   |--e3-manager-interface
+    |   |--e3-manager-service：【端口:9090】
+    |--e3-manager-web：表现层工程【端口:9091】
     |--e3-portal-web：
+    |--e3-content：图片服务系统
+    |   |--e3-content-interface：
+    |   |--e3-content-service：
 ```
 
 #### 技术选型

@@ -6,18 +6,33 @@
         <artifactId>e3-parent</artifactId>
         <groupId>cn.e3mall</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../e3-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>e3-manager-web</artifactId>
+    <artifactId>e3-portal-web</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
-        <!--添加 e3-manager-interface 依赖-->
+        <!-- JSP相关 -->
         <dependency>
-            <groupId>cn.e3mall</groupId>
-            <artifactId>e3-manager-interface</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 文件上传组件 -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
         </dependency>
         <!-- Spring -->
         <dependency>
@@ -48,37 +63,21 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
-        <!-- JSP相关 -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!-- dubbo相关 -->
+        <!-- dubbo 相关 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>org.springframework</groupId>
                     <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.jboss.netty</groupId>
                     <artifactId>netty</artifactId>
+                    <groupId>org.jboss.netty</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--zookeeper 注册中心-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
@@ -87,26 +86,20 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
-            <!--配置 tomcat 插件-->
+            <!-- 配置Tomcat插件 -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
+                    <port>9092</port>
                     <path>/</path>
-                    <port>9091</port>
                 </configuration>
             </plugin>
         </plugins>
