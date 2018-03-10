@@ -1,16 +1,16 @@
-package com.yapengren.e3mall.service.impl;
+package com.yapengren.e3mall.content.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.common.utils.IDUtils;
+import com.yapengren.e3mall.service.ItemService;
 import com.yapengren.e3mall.mapper.TbItemDescMapper;
 import com.yapengren.e3mall.mapper.TbItemMapper;
 import com.yapengren.e3mall.pojo.TbItem;
 import com.yapengren.e3mall.pojo.TbItemDesc;
 import com.yapengren.e3mall.pojo.TbItemExample;
-import com.yapengren.e3mall.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

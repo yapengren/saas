@@ -1,4 +1,4 @@
-package com.yapengren.e3mall.service.impl;
+package com.yapengren.e3mall.content.service.impl;
 
 import com.yapengren.e3mall.common.pojo.EasyUITreeNode;
 import com.yapengren.e3mall.mapper.TbItemCatMapper;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 商品分类管理
