@@ -1,5 +1,6 @@
 package com.yapengren.e3mall.controller;
 
+import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUITreeNode;
 import com.yapengren.e3mall.content.service.ContentCatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,13 @@ public class ContentCatController {
         return list;
     }
 
+    /**
+     * 新增节点
+     */
+    @RequestMapping(value = "/content/category/create")
+    @ResponseBody
+    public E3Result addContentCategory(long parentId, String name) {
+        E3Result e3Result = contentCatService.addContentCategory(parentId, name);
+        return e3Result;
+    }
 }

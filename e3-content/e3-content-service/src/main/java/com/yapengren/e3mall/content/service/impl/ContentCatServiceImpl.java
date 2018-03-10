@@ -1,5 +1,6 @@
 package com.yapengren.e3mall.content.service.impl;
 
+import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUITreeNode;
 import com.yapengren.e3mall.content.service.ContentCatService;
 import com.yapengren.e3mall.mapper.TbContentCategoryMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,5 +51,37 @@ public class ContentCatServiceImpl implements ContentCatService {
 
         // 返回 TreeNode 列表
         return treeNodes;
+    }
+
+    /**
+     * 新增节点
+     */
+    @Override
+    public E3Result addContentCategory(long parentId, String name) {
+        // 创建一个 TbContentCategory 对象
+        TbContentCategory tbContentCategory = new TbContentCategory();
+        // 设置对象的属性
+        tbContentCategory.setParentId(parentId);
+        tbContentCategory.setName(name);
+        // 1(正常) 2(删除)
+        tbContentCategory.setStatus(1);
+        // 默认是 1
+        tbContentCategory.setSortOrder(1);
+        // 新增节点一定是叶子节点
+        tbContentCategory.setIsParent(false);
+        tbContentCategory.setCreated(new Date());
+        tbContentCategory.setUpdated(new Date());
+        // 把数据插入到数据库中
+        tbContentCategoryMapper.insert(tbContentCategory);
+        // 取父节点的信息
+        TbContentCategory parent = tbContentCategoryMapper.selectByPrimaryKey(parentId);
+        // 判断父节点的 isparent 属性是否是 true，如果不是应该改为 true
+        if (!parent.getIsParent()) {
+            parent.setIsParent(true);
+            // 更新到数据库
+            tbContentCategoryMapper.updateByPrimaryKey(parent);
+        }
+        // 返回 E3Result 其中包含 TbContentCategory 对象
+        return  E3Result.ok(tbContentCategory);
     }
 }
