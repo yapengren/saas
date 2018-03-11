@@ -51,4 +51,18 @@ public class ContentServiceImpl implements ContentService {
         // 返回结果
         return result;
     }
+
+    /**
+     * 根据分类 id 查询内容列表
+     */
+    @Override
+    public List<TbContent> getContentList(long cid) {
+        // 创建一个查询条件，设置查询条件，根据内容分类 id 查询
+        TbContentExample example = new TbContentExample();
+        TbContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(cid);
+        // 执行查询
+        List<TbContent> list = tbContentMapper.selectByExample(example);
+        return list;
+    }
 }
