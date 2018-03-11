@@ -3,6 +3,7 @@ package com.yapengren.e3mall.content.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yapengren.e3mall.common.jedis.JedisClient;
+import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.common.utils.JsonUtils;
 import com.yapengren.e3mall.content.service.ContentService;
@@ -13,6 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.AbstractDocument;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -93,5 +96,21 @@ public class ContentServiceImpl implements ContentService {
 
         // 返回查询结果
         return list;
+    }
+
+    /**
+     * 新增内容
+     */
+    @Override
+    public E3Result addContent(TbContent tbContent) {
+        // 补全 pojo 对象的属性
+        tbContent.setCreated(new Date());
+        tbContent.setUpdated(new Date());
+        // 插入数据
+        tbContentMapper.insert(tbContent);
+        // 缓存同步
+        jedisClient.hdel("content-info", tbContent.getCategoryId().toString());
+        // 返回成功呢
+        return E3Result.ok();
     }
 }

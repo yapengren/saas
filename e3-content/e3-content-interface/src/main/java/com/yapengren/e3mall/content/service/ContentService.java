@@ -1,5 +1,6 @@
 package com.yapengren.e3mall.content.service;
 
+import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.pojo.TbContent;
 
@@ -21,4 +22,9 @@ public interface ContentService {
      * 根据分类 id 查询内容列表
      */
     List<TbContent> getContentList(long cid);
+
+    /**
+     * 新增内容
+     */
+    E3Result addContent(TbContent tbContent);
 }
