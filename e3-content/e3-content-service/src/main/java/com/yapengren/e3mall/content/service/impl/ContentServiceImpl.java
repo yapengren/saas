@@ -2,11 +2,14 @@ package com.yapengren.e3mall.content.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yapengren.e3mall.common.jedis.JedisClient;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
+import com.yapengren.e3mall.common.utils.JsonUtils;
 import com.yapengren.e3mall.content.service.ContentService;
 import com.yapengren.e3mall.mapper.TbContentMapper;
 import com.yapengren.e3mall.pojo.TbContent;
 import com.yapengren.e3mall.pojo.TbContentExample;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,9 @@ public class ContentServiceImpl implements ContentService {
 
     @Autowired
     private TbContentMapper tbContentMapper;
+
+    @Autowired
+    private JedisClient jedisClient;
 
     /**
      * 内容列表查询
@@ -57,12 +63,35 @@ public class ContentServiceImpl implements ContentService {
      */
     @Override
     public List<TbContent> getContentList(long cid) {
+        /*============查询缓存 start ==============*/
+        // 如果有结果直接返回
+        try {
+            String json = jedisClient.hget("content-info", cid + "");
+            if (StringUtils.isNotBlank(json)) {
+                List<TbContent> list = JsonUtils.jsonToList(json, TbContent.class);
+                return list;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*============查询缓存 end ==============*/
+
         // 创建一个查询条件，设置查询条件，根据内容分类 id 查询
         TbContentExample example = new TbContentExample();
         TbContentExample.Criteria criteria = example.createCriteria();
         criteria.andCategoryIdEqualTo(cid);
         // 执行查询
         List<TbContent> list = tbContentMapper.selectByExample(example);
+
+        /*============向缓存中添加数据 start ==============*/
+        try {
+            jedisClient.hset("content-info", cid + "", JsonUtils.objectToJson(list));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*============向缓存中添加数据 end ==============*/
+
+        // 返回查询结果
         return list;
     }
 }

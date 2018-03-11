@@ -1,26 +1,26 @@
 # e3mall
 这里是e3商城
 
-#### 项目介绍
+### 项目介绍
 	宜立方网上商城是一个综合性的B2C平台
 
-#### 组织结构
+### 组织结构
 ```
-e3-parent：父工程，打包方式pom，管理jar包的版本号。
-    |--e3-common：通用的工具类通用的pojo，打包方式jar
-    |--e3-manager：服务层工程，Pom工程
+e3-parent：父工程，管理jar包的版本号
+    |--e3-common：通用的工具类通用的pojo
+    |--e3-manager：服务层工程
     |   |--e3-manager-dao
     |   |--e3-manager-pojo
     |   |--e3-manager-interface
-    |   |--e3-manager-service：【端口:9090】
-    |--e3-manager-web：表现层工程【端口:9091】
-    |--e3-portal-web：
+    |   |--e3-manager-service【端口：9090】
+    |--e3-manager-web：表现层工程【端口：9091】
+    |--e3-portal-web：商城门户【端口：9092】
     |--e3-content：图片服务系统
-    |   |--e3-content-interface：
-    |   |--e3-content-service：
+    |   |--e3-content-interface
+    |   |--e3-content-service 【端口：9093】
 ```
 
-#### 技术选型
+### 技术选型
 
 ###### 后台技术
 
@@ -34,15 +34,23 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 | Druid            | 数据库连接池   | 1.0.9   |
 | Zookeeper        | 分布式协调服务 | 3.4.7   |
 | Dubbo            | 分布式服务框架 | 2.5.3   |
-| Redis            | 分布式缓存数据库 | 
+| Redis            | 分布式缓存数据库 | 3.0.7 |
 | Solr             | 分布式全文搜索引擎 | 4.10.3 |
 | Quartz           | 作业调度框架   | 2.2.2  |
 | ActiveMQ         | 消息队列      | 5.11.2 |
 | FastDFS          | 分布式文件系统 | 1.25.4 |
 | Maven            | 项目构建管理   | 3.3.9 |
  
-#### 架构图
+### 架构图
 ![](https://i.imgur.com/lWAYzGS.jpg)
+
+### 模块介绍
+后台管理系统：管理商品、订单、类目、商品规格属性、用户管理、内容发布等功能
+前台系统：用户可以在前台系统中进行注册、登录、浏览商品、首页、下单等操作
+会员系统：用户可以在该系统中查询已下的订单、收藏的商品、我的优惠券、团购等信息
+订单系统：提供下单、查询订单、修改订单状态、定时处理订单
+搜索系统：提供商品的搜索功能
+单点登录系统：为多个系统之间提供用户登录凭证以及查询登录用户的信息
 
 #### 开发工具
 
@@ -53,7 +61,10 @@ e3-parent：父工程，打包方式pom，管理jar包的版本号。
 - Intellij IDEA:开发IDE
 - Navicat:数据库客户端
 
-#### 开发指南
+### 开发指南
+
+启动 MySQL、Redis、Zookeeper、Dubbo admin相关服务
+
 ##### 修改本地Host
 - 127.0.0.1 dbserver
 - 192.168.25.133 trackerserver
