@@ -6,18 +6,21 @@
 
 ### 组织结构
 ```
-e3-parent：父工程，管理jar包的版本号
-    |--e3-common：通用的工具类通用的pojo
-    |--e3-manager：服务层工程
-    |   |--e3-manager-dao
-    |   |--e3-manager-pojo
-    |   |--e3-manager-interface
-    |   |--e3-manager-service【端口：9090】
-    |--e3-manager-web：表现层工程【端口：9091】
-    |--e3-portal-web：商城门户【端口：9092】
-    |--e3-content：图片服务系统
-    |   |--e3-content-interface
-    |   |--e3-content-service 【端口：9093】
+e3-parent -- 父工程，管理jar包的版本号
+    |-- e3-common -- 工具类、pojo
+    |-- e3-manager -- 商城管理系统
+    |   |-- e3-manager-dao -- 代码生成模块
+    |   |-- e3-manager-pojo -- 
+    |   |-- e3-manager-interface -- rpc接口包
+    |   |-- e3-manager-service -- rpc服务提供者[端口：9090]
+    |-- e3-manager-web -- 商城管理系统表现层[端口：9091]
+    |-- e3-portal-web -- 商城门户[端口：9092]
+    |-- e3-content -- 内容管理系统
+    |   |-- e3-content-interface -- rpc接口包
+    |   |-- e3-content-service -- rpc服务提供者[端口：9093]
+	|-- e3-search -- 搜索系统
+	|	|-- e3-search-interface -- rpc接口包
+	|	|-- e3-search-service -- rpc服务提供者[端口：]
 ```
 
 ### 技术选型
@@ -79,6 +82,23 @@ e3-parent：父工程，管理jar包的版本号
     org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey
 ```
 此异常的原因是由于 mapper 接口编译后在同一个目录下没有找到 mapper 映射文件而出现的。由于 maven 工程在默认情况下 src/main/java 目录下的 mapper 文件是不发布到 target 目录下的。
+
+解决方法：
+pom.xml 文件内添加节点
+```
+<build>
+	<resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>
+```
 
 2. 报错信息如下：
 ```
