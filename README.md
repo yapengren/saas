@@ -18,9 +18,9 @@ e3-parent -- 父工程，管理jar包的版本号
     |-- e3-content -- 内容管理系统
     |   |-- e3-content-interface -- rpc接口包
     |   |-- e3-content-service -- rpc服务提供者[端口：9093]
-	|-- e3-search -- 搜索系统
-	|	|-- e3-search-interface -- rpc接口包
-	|	|-- e3-search-service -- rpc服务提供者[端口：]
+    |-- e3-search -- 搜索系统
+    |	|-- e3-search-interface -- rpc接口包
+    |	|-- e3-search-service -- rpc服务提供者[端口：]
 ```
 
 ### 技术选型
