@@ -12,16 +12,16 @@ e3-parent -- 父工程，管理jar包的版本号
     |   |-- e3-manager-dao -- 代码生成模块
     |   |-- e3-manager-pojo -- 
     |   |-- e3-manager-interface -- rpc接口包
-    |   |-- e3-manager-service -- rpc服务提供者[端口：9090]
-    |-- e3-manager-web -- 商城管理系统表现层[端口：9091]
-    |-- e3-portal-web -- 商城门户[端口：9092]
+    |   |-- e3-manager-service -- rpc服务提供者[端口：9000]
+    |-- e3-manager-web -- 商城管理系统表现层[端口：9001]
+    |-- e3-portal-web -- 商城门户[端口：9002]
     |-- e3-content -- 内容管理系统
     |   |-- e3-content-interface -- rpc接口包
-    |   |-- e3-content-service -- rpc服务提供者[端口：9093]
+    |   |-- e3-content-service -- rpc服务提供者[端口：9003]
     |-- e3-search -- 搜索系统
     |	|-- e3-search-interface -- rpc接口包
-    |	|-- e3-search-service -- rpc服务提供者[端口：9094]
-    |-- e3-search-web -- 搜索系统表现层[端口：9095]
+    |	|-- e3-search-service -- rpc服务提供者[端口：9004]
+    |-- e3-search-web -- 搜索系统表现层[端口：9005]
 ```
 
 ### 技术选型
@@ -49,11 +49,11 @@ e3-parent -- 父工程，管理jar包的版本号
 ![](https://i.imgur.com/lWAYzGS.jpg)
 
 ### 模块介绍
-后台管理系统：管理商品、订单、类目、商品规格属性、用户管理、内容发布等功能
-前台系统：用户可以在前台系统中进行注册、登录、浏览商品、首页、下单等操作
-会员系统：用户可以在该系统中查询已下的订单、收藏的商品、我的优惠券、团购等信息
-订单系统：提供下单、查询订单、修改订单状态、定时处理订单
-搜索系统：提供商品的搜索功能
+后台管理系统：管理商品、订单、类目、商品规格属性、用户管理、内容发布等功能<br/>
+前台系统：用户可以在前台系统中进行注册、登录、浏览商品、首页、下单等操作<br/>
+会员系统：用户可以在该系统中查询已下的订单、收藏的商品、我的优惠券、团购等信息<br/>
+订单系统：提供下单、查询订单、修改订单状态、定时处理订单<br/>
+搜索系统：提供商品的搜索功能<br/>
 单点登录系统：为多个系统之间提供用户登录凭证以及查询登录用户的信息
 
 #### 开发工具
@@ -67,8 +67,11 @@ e3-parent -- 父工程，管理jar包的版本号
 
 ### 开发指南
 
-启动 MySQL、Redis、Zookeeper、Dubbo admin相关服务
-
+1、启动 MySQL、Redis、Zookeeper、Dubbo admin相关服务<br/>
+2、启动顺序 e3-manager = e3-content = e3-search<br/>
+        e3-manager-web = e3-portal-web = e3-search-web<br/>
+3、商城后台管理系统 http://localhost:9001/<br/>
+    商城门户网站 
 ##### 修改本地Host
 - 127.0.0.1 dbserver
 - 192.168.25.133 trackerserver
@@ -76,7 +79,7 @@ e3-parent -- 父工程，管理jar包的版本号
 - 192.168.25.128 zkserver
 
 #### 常见问题
-1. 项目启动报错，报错信息如下：
+1、项目启动报错，报错信息如下：
 ```
 严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; 
 	nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yapengren.e3mall.mapper.TbItemMapper.selectByPrimaryKey] with root cause
@@ -101,14 +104,14 @@ pom.xml 文件内添加节点
 </build>
 ```
 
-2. 报错信息如下：
+2、报错信息如下：
 ```
 严重: Servlet.service() for servlet [e3-manager] in context with path [] threw exception [Request processing failed; nested exception is com.alibaba.dubbo.rpc.RpcException: Failed to invoke the method getItemById in the service com.yapengren.e3mall.service.ItemService. Tried 3 times of the providers [10.254.3.175:20880] (1/1) from the registry 192.168.110.130:2181 on the consumer 10.254.3.175 using the dubbo version 2.5.3. Last error is: Failed to invoke remote method: getItemById, provider: dubbo://10.254.3.175:20880/com.yapengren.e3mall.service.ItemService?anyhost=true&application=e3-manager-web&check=false&dubbo=2.5.3&interface=com.yapengren.e3mall.service.ItemService&methods=getItemById&pid=108&revision=1.0-SNAPSHOT&side=consumer&timestamp=1520136387466, cause: Failed to send response: Response [id=2, version=2.0.0, status=20, event=false, error=null, result=RpcResult [result=com.yapengren.e3mall.pojo.TbItem@7c1488bf, exception=null]], cause: java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
 java.lang.IllegalStateException: Serialized class com.yapengren.e3mall.pojo.TbItem must implement java.io.Serializable
 ```
 解决办法：实现 Serializable 序列化接口
 
-3. PageHelper 分页插件版本改为 5.0.1 配置文件解决方案
+3、PageHelper 分页插件版本改为 5.0.1 配置文件解决方案
 ```
 <plugins>
     <!--配置分页插件-->

@@ -40,4 +40,5 @@
     <dubbo:reference interface="com.yapengren.e3mall.service.ItemCatService" id="itemCatService"/>
     <dubbo:reference interface="com.yapengren.e3mall.content.service.ContentCatService" id="contentCatService"/>
     <dubbo:reference interface="com.yapengren.e3mall.content.service.ContentService" id="contentService"/>
+    <dubbo:reference interface="com.yapengren.e3mall.search.service.SearchItemService" id="searchItemService"/>
 </beans>
