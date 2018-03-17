@@ -7,6 +7,8 @@ import javax.jms.*;
 import java.io.IOException;
 
 /**
+ * ActiveMQ 测试
+ *
  * @author renyapeng
  */
 public class ActivemqTest {
