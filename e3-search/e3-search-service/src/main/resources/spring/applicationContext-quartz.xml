@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--注册JobDetail 对象，负责通过反射调用自定义的job中的方法-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--注入目标对象-->
+        <property name="targetObject" ref="searchItemServiceImpl"/>
+        <!--注入目标方法-->
+        <property name="targetMethod" value="importAllItems"/>
+    </bean>
+
+    <!--注册触发器，指定任务的触发时间-->
+    <bean id="myTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <!--指定任务-->
+        <property name="jobDetail" ref="jobDetail"/>
+        <!--绑定cron表达式-->
+        <property name="cronExpression">
+            <value>0 0 3 1/1 * ?</value>
+        </property>
+    </bean>
+
+    <!--配置统一的调度工厂-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!--注入触发器，可以有多个-->
+        <property name="triggers">
+            <list>
+                <ref bean="myTrigger"/>
+            </list>
+        </property>
+    </bean>
+</beans>
