@@ -29,12 +29,12 @@
         <property name="destination" ref="queueDestination"/>
         <property name="messageListener" ref="myMessageListener"/>
     </bean>
-    <!--&lt;!&ndash;消息的接收者&ndash;&gt;-->
-    <!--<bean id="itemAddMessageListener" class="com.yapengren.e3mall.search.listener.ItemAddMessageListener"/>-->
-    <!--&lt;!&ndash;消息监听容器&ndash;&gt;-->
-    <!--<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">-->
-        <!--<property name="connectionFactory" ref="connectionFactory"/>-->
-        <!--<property name="destination" ref="topicDestionation"/>-->
-        <!--<property name="messageListener" ref="itemAddMessageListener"/>-->
-    <!--</bean>-->
+    <!--消息的接收者-->
+    <bean id="itemAddMessageListener" class="com.yapengren.e3mall.search.listener.ItemAddMessageListener"/>
+    <!--消息监听容器-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="topicDestionation"/>
+        <property name="messageListener" ref="itemAddMessageListener"/>
+    </bean>
 </beans>

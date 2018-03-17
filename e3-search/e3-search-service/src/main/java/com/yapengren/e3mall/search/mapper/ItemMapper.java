@@ -7,4 +7,6 @@ import java.util.List;
 public interface ItemMapper {
 
     List<Item> getItemList();
+
+    Item getItemById(long itemId);
 }

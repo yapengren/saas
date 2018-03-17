@@ -12,8 +12,15 @@ import com.yapengren.e3mall.pojo.TbItem;
 import com.yapengren.e3mall.pojo.TbItemDesc;
 import com.yapengren.e3mall.pojo.TbItemExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +37,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @Resource
+    private Destination topicDestionation;
 
     /**
      * 根据商品 id 查询商品信息
@@ -67,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public E3Result addItem(TbItem item, String desc) {
         // 生成商品 id
-        long itemId = IDUtils.genItemId();
+        final long itemId = IDUtils.genItemId();
         // 把 TbItem 对象的属性补充完整
         item.setId(itemId);
         item.setStatus((byte) 1);
@@ -84,6 +97,26 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setUpdated(new Date());
         // 向商品描述表插入数据
         tbItemDescMapper.insert(itemDesc);
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // 发送消息
+                jmsTemplate.send(topicDestionation, new MessageCreator() {
+                    @Override
+                    public Message createMessage(Session session) throws JMSException {
+                        return session.createTextMessage(itemId + "");
+                    }
+                });
+            }
+        }).start();
         // 返回成功
         return E3Result.ok();
     }
