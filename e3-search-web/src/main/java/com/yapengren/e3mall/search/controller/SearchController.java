@@ -26,6 +26,10 @@ public class SearchController {
 
     @RequestMapping(value = "/search")
     public String search(String keyword, @RequestParam(defaultValue = "1") int page, Model model) throws Exception {
+
+        // 异常测试
+        // int i = 1 / 0;
+
         // 解决乱码问题
         if (StringUtils.isNotBlank(keyword)) {
             String string = new String(keyword.getBytes("iso8859-1"), "utf-8");

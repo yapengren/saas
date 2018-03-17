@@ -17,7 +17,7 @@ import java.io.IOException;
 public class SolrjTest {
 
     /**
-     * 索引库增加
+     * 测试 索引库增加
      */
     @Test
     public void addDocument() throws IOException, SolrServerException {
@@ -36,7 +36,7 @@ public class SolrjTest {
     }
 
     /**
-     * 索引库删除
+     * 测试 索引库删除
      */
     @Test
     public void deleteDocument() throws IOException, SolrServerException {
@@ -48,7 +48,7 @@ public class SolrjTest {
     }
 
     /**
-     * 查询索引库
+     * 测试 查询索引库
      */
     @Test
     public void queryDocument() throws SolrServerException {

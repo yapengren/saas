@@ -12,7 +12,7 @@ import org.junit.Test;
 public class SolrCloudTest {
 
     /**
-     * solr 集群版添加索引
+     * 测试 solr 集群版添加索引
      *
      * @throws Exception
      */
