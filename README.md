@@ -22,6 +22,7 @@ e3-parent -- 父工程，管理jar包的版本号
     |	|-- e3-search-interface -- rpc接口包
     |	|-- e3-search-service -- rpc服务提供者[端口：9004]
     |-- e3-search-web -- 搜索系统表现层[端口：9005]
+    |-- e3-item-web -- 商品详情页面展示[端口：9006]
 ```
 
 ### 技术选型

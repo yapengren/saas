@@ -17,6 +17,8 @@
         <property name="jobDetail" ref="jobDetail"/>
         <!--绑定cron表达式-->
         <property name="cronExpression">
+            <!--每隔1小时出发 0 0 0/1 * * ?-->
+            <!--每天凌晨3点触发-->
             <value>0 0 3 1/1 * ?</value>
         </property>
     </bean>

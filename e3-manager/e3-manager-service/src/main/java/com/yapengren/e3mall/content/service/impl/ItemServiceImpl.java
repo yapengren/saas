@@ -2,16 +2,20 @@ package com.yapengren.e3mall.content.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yapengren.e3mall.common.jedis.JedisClient;
 import com.yapengren.e3mall.common.pojo.E3Result;
 import com.yapengren.e3mall.common.pojo.EasyUIDataGridResult;
 import com.yapengren.e3mall.common.utils.IDUtils;
+import com.yapengren.e3mall.common.utils.JsonUtils;
 import com.yapengren.e3mall.service.ItemService;
 import com.yapengren.e3mall.mapper.TbItemDescMapper;
 import com.yapengren.e3mall.mapper.TbItemMapper;
 import com.yapengren.e3mall.pojo.TbItem;
 import com.yapengren.e3mall.pojo.TbItemDesc;
 import com.yapengren.e3mall.pojo.TbItemExample;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
@@ -43,6 +47,12 @@ public class ItemServiceImpl implements ItemService {
 
     @Resource
     private Destination topicDestionation;
+
+    @Autowired
+    private JedisClient jedisClient;
+
+    @Value("${item.cache.expire}")
+    private Integer itemCacheExpire;
 
     /**
      * 根据商品 id 查询商品信息
@@ -119,5 +129,39 @@ public class ItemServiceImpl implements ItemService {
         }).start();
         // 返回成功
         return E3Result.ok();
+    }
+
+    /**
+     * 查询商品描述通过 id
+     *
+     * @param itemId
+     * @return
+     */
+    @Override
+    public TbItemDesc getItemDescById(long itemId) {
+        try {
+            // 查询缓存
+            String json = jedisClient.get("item_info:" + itemId + ":desc");
+            // 如果缓存中有数据，直接返回
+            if (StringUtils.isNotBlank(json)) {
+                TbItemDesc itemDesc = JsonUtils.jsonToPojo(json, TbItemDesc.class);
+                return itemDesc;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        TbItemDesc tbItemDesc = tbItemDescMapper.selectByPrimaryKey(itemId);
+
+        try {
+            // 把结果添加到缓存
+            jedisClient.set("item_info:" + itemId + ":desc", JsonUtils.objectToJson(tbItemDesc));
+            // 设置缓存的过期时间，可以动态调节
+            jedisClient.expire("item_info:" + itemId + ":desc", itemCacheExpire);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return tbItemDesc;
     }
 }

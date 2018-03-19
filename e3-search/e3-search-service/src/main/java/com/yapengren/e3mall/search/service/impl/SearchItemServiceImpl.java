@@ -51,6 +51,8 @@ public class SearchItemServiceImpl implements SearchItemService {
             }
             // 提交
             solrServer.commit();
+            //
+            System.out.println("测试-全量更新索引");
             // 返回成功
             return E3Result.ok();
         } catch (Exception e) {
