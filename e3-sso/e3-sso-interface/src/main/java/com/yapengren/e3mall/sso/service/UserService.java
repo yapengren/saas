@@ -35,4 +35,9 @@ public interface UserService {
      * @return
      */
     E3Result userLogin(String username, String password);
+
+    /**
+     * 根据 token 查询用户信息
+     */
+    E3Result getUserByToken(String token);
 }

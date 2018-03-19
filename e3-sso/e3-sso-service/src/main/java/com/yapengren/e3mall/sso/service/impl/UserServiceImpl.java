@@ -145,4 +145,24 @@ public class UserServiceImpl implements UserService {
         // 返回 E3Result，其中包含 token
         return E3Result.ok(token);
     }
+
+    /**
+     * 根据 token 查询用户信息
+     *
+     * @param token
+     */
+    @Override
+    public E3Result getUserByToken(String token) {
+        // 根据 token 查询 redis
+        String json = jedisClient.hget("session:" + token, "user");
+        // 如果没有查询到用户信息，返回登录过期
+        if (StringUtils.isBlank(json)) {
+            return E3Result.build(400, "用户登录已经过期");
+        }
+        // 如果查询到用户信息，重置过期时间
+        TbUser user = JsonUtils.jsonToPojo(json, TbUser.class);
+        jedisClient.expire("session:" + token, sessionExpire);
+        // 把用户信息包装到 E3Result 中返回
+        return E3Result.ok(user);
+    }
 }
