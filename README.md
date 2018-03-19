@@ -23,6 +23,10 @@ e3-parent -- 父工程，管理jar包的版本号
     |	|-- e3-search-service -- rpc服务提供者[端口：9004]
     |-- e3-search-web -- 搜索系统表现层[端口：9005]
     |-- e3-item-web -- 商品详情页面展示[端口：9006]
+    |-- e3-sso -- 单点登录
+    |   |-- e3-sso-interface -- 
+    |   |-- e3-sso-service -- [端口：9007]
+    |-- e3-sso-web -- [端口：9008]
 ```
 
 ### 技术选型
