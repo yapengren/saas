@@ -15,6 +15,6 @@
     <!-- 用 dubbo 协议在 20882 端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20882"/>
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.yapengren.e3mall.search.service.SearchItemService" ref="searchItemServiceImpl" timeout="300000"/>
-    <dubbo:service interface="com.yapengren.e3mall.search.service.SearchService" ref="searchServiceImpl" timeout="300000"/>
+    <dubbo:service interface="com.yapengren.e3mall.search.service.SearchItemService" ref="searchItemServiceImpl" timeout="1200000"/>
+    <dubbo:service interface="com.yapengren.e3mall.search.service.SearchService" ref="searchServiceImpl" timeout="1200000"/>
 </beans>

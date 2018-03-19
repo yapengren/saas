@@ -16,6 +16,6 @@
     <!--用 dubbo 协议在 20880 端口暴露服务-->
     <dubbo:protocol name="dubbo" port="20880"/>
     <!--声明需要暴露的服务接口-->
-    <dubbo:service interface="com.yapengren.e3mall.service.ItemService" ref="itemServiceImpl" timeout="300000"/>
-    <dubbo:service interface="com.yapengren.e3mall.service.ItemCatService" ref="itemCatServiceImpl" timeout="300000"/>
+    <dubbo:service interface="com.yapengren.e3mall.service.ItemService" ref="itemServiceImpl" timeout="1200000"/>
+    <dubbo:service interface="com.yapengren.e3mall.service.ItemCatService" ref="itemCatServiceImpl" timeout="1200000"/>
 </beans>

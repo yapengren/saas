@@ -16,5 +16,5 @@
     <!--用 dubbo 协议在 20883 端口暴露服务-->
     <dubbo:protocol name="dubbo" port="20883"/>
     <!--声明需要暴露的服务接口-->
-    <dubbo:service interface="com.yapengren.e3mall.sso.service.UserService" ref="userServiceImpl" timeout="300000"/>
+    <dubbo:service interface="com.yapengren.e3mall.sso.service.UserService" ref="userServiceImpl" timeout="1200000"/>
 </beans>
