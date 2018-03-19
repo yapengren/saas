@@ -27,6 +27,6 @@
 
     <!--切面-->
     <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.yapengren.e3mall.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.yapengren.e3mall.sso.service..*.*(..))"/>
     </aop:config>
 </beans>

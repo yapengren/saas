@@ -73,10 +73,10 @@ e3-parent -- 父工程，管理jar包的版本号
 ### 开发指南
 
 1、启动 MySQL、Redis、Zookeeper、Dubbo admin相关服务<br/>
-2、启动顺序 e3-manager = e3-content = e3-search<br/>
-        e3-manager-web = e3-portal-web = e3-search-web<br/>
+2、启动顺序 e3-manager = e3-content = e3-search = e3-sso<br/>
+        e3-manager-web = e3-portal-web = e3-search-web = e3-item-web = e3-sso-web<br/>
 3、商城后台管理系统 http://localhost:9001/<br/>
-    商城门户网站 
+    商城门户网站 http://localhost:9002/<br/>
 ##### 修改本地Host
 - 127.0.0.1 dbserver
 - 192.168.25.133 trackerserver
