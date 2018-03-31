@@ -27,6 +27,10 @@ e3-parent -- 父工程，管理jar包的版本号
     |   |-- e3-sso-interface -- 
     |   |-- e3-sso-service -- [端口：9007]
     |-- e3-sso-web -- [端口：9008]
+    |-- e3-cart -- 购物车模块
+    |   |-- e3-cart-interface -- 
+    |   |-- e3-cart-service -- rpc服务提供者[端口：9009]
+    |-- e3-cart-web -- [端口：9010]
 ```
 
 ### 技术选型
