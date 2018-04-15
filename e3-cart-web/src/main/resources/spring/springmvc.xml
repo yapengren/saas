@@ -22,8 +22,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- 引用dubbo服务 -->
+    <!--引用 dubbo 服务-->
+    <!--应用信息，就是当前服务的项目信息配置-->
     <dubbo:application name="e3-cart-web"/>
+    <!--注册中心配置-->
     <dubbo:registry protocol="zookeeper" address="zkserver:2181"/>
-    <!--<dubbo:reference interface="com.yapengren.e3mall.content.service.ContentService" id="contentService"/>-->
+    <!--服务消费者引用接口配置-->
+    <dubbo:reference interface="com.yapengren.e3mall.service.ItemService" id="itemService"/>
 </beans>

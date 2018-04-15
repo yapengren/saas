@@ -11,6 +11,7 @@
     <!-- 使用 dubbo 发布服务 -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="e3-content"/>
+    <!--注册中心配置-->
     <dubbo:registry protocol="zookeeper" address="zkserver:2181"/>
     <!-- 用 dubbo 协议在 20881 端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20881"/>

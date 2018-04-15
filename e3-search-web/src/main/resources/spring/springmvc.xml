@@ -24,8 +24,11 @@
     <!--配置全局异常处理器-->
     <bean class="com.yapengren.e3mall.search.exception.GlobalExceptionResolver"/>
 
-    <!-- 引用dubbo服务 -->
+    <!--引用 dubbo 服务-->
+    <!--应用信息，就是当前服务的项目信息配置-->
     <dubbo:application name="e3-search-web"/>
+    <!--注册中心配置-->
     <dubbo:registry protocol="zookeeper" address="zkserver:2181"/>
+    <!--服务消费者引用接口配置-->
     <dubbo:reference interface="com.yapengren.e3mall.search.service.SearchService" id="searchService"/>
 </beans>
