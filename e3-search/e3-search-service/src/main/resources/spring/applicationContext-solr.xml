@@ -5,6 +5,6 @@
 
     <!--连接 solr 单机版-->
     <bean id="solrserver" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
-        <constructor-arg index="0" value="http://solrserver:8983/solr/collection2"/>
+        <constructor-arg index="0" value="http://e3mall-solrServer:8983/solr/collection2"/>
     </bean>
 </beans>

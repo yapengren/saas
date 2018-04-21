@@ -21,7 +21,7 @@
     <!--应用信息，就是当前服务的项目信息配置-->
     <dubbo:application name="e3-item-web"/>
     <!--注册中心配置-->
-    <dubbo:registry protocol="zookeeper" address="zkserver:2181"/>
+    <dubbo:registry protocol="zookeeper" address="e3mall-zkServer:2181"/>
     <!--服务消费者引用接口配置-->
     <dubbo:reference interface="com.yapengren.e3mall.service.ItemService" id="itemService" />
 </beans>
